@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="UnsecuredTF">
+    <default-activity id="__1">print</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__2">UnsecuredBean</managed-bean-name>
+      <managed-bean-class id="__5">UnsecuredBean</managed-bean-class>
+      <managed-bean-scope id="__3">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="UnsecuredPF">
+      <page>/UnsecuredPF.jsff</page>
+    </view>
+    <method-call id="print">
+      <method>#{pageFlowScope.UnsecuredBean.printSomething}</method>
+      <outcome id="__11">
+        <fixed-outcome>showPage</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__6">
+      <from-activity-id id="__7">print</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome id="__10">showPage</from-outcome>
+        <to-activity-id id="__9">UnsecuredPF</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

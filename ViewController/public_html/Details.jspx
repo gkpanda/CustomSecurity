@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:form id="f1">
+        <af:panelSplitter orientation="horizontal" splitterPosition="100"
+                          id="ps1">
+          <f:facet name="first">
+            <af:panelGroupLayout id="pgl2" layout="vertical">
+              <af:commandButton text="Impersonate" id="cb1"
+                                actionListener="#{testBean.impersonate}"/>
+              <af:commandButton text="Stop Impersonation" id="cb2"
+                                actionListener="#{testBean.stop}"/>
+              <af:commandButton text="Logout" id="cb3"
+                                actionListener="#{testBean.logout}"/>
+              <f:facet name="separator">
+                <af:spacer width="10" height="10" id="s1"/>
+              </f:facet>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="second">
+            <af:panelStretchLayout endWidth="100px" id="psl1">
+              <f:facet name="center">
+                <af:panelGroupLayout layout="scroll"
+                                     xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                     id="pgl1" binding="#{testBean.parent}">
+                  <af:region value="#{bindings.ProtectedTF1.regionModel}"
+                             id="r1"
+                             rendered="#{securityContext.userInRole['CanSeeProtected']}"/>
+                  <af:region value="#{bindings.UnsecuredTF1.regionModel}"
+                             id="r2"/>
+                </af:panelGroupLayout>
+              </f:facet>
+              <f:facet name="end"/>
+            </af:panelStretchLayout>
+          </f:facet>
+        </af:panelSplitter>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>
